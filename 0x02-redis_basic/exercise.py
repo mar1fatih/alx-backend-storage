@@ -38,3 +38,11 @@ class Cache:
         if fn:
             return fn(val)
         return val
+
+    def get_str(self, key: str) -> str:
+        """ get str """
+        return self._redis.get(key, str)
+
+    def get_int(self, key: str) -> int:
+        """ get int """
+        return self._redis.get(key, int)
