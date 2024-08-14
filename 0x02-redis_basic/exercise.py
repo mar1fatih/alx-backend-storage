@@ -24,14 +24,12 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-
     @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """generate a random key"""
         _id: str = uuid.uuid4()
         self._redis.set(_id, data)
         return _id
-
 
     def get(self, key, fn: Optional[Callable]
             = None) -> Union[bytes, int, str, float]:
@@ -41,11 +39,9 @@ class Cache:
             return fn(val)
         return val
 
-
     def get_str(self, key: str) -> str:
         """ get str """
         return self._redis.get(key, str)
-
 
     def get_int(self, key: str) -> int:
         """ get int """
